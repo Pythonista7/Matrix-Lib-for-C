@@ -82,7 +82,7 @@
                   An Integer that is rank of the matrix X.
      ***
   
-  9)reshape(X,p,q)
+  9)reshape(X,g,h)
   
             Input
                  X -type(pointer to a 2D array)
@@ -94,6 +94,6 @@
                  
             Note:
                 * Rehape is possible only if the dimensions of the input matrix and reshape dimensions are compatible.
-                  i.e - Consider dimesions of X to be m x n.Then if X needs to be reshaped to p x q,
+                  i.e - Consider dimesions of X to be m x n.Then if X needs to be reshaped to g x h,
                         p x q = m x n MUST BE TRUE.
             
