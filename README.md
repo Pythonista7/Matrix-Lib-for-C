@@ -86,8 +86,8 @@
   
             Input
                  X -type(pointer to a 2D array)
-                 p -type(Interger),row size of reshaped matrix
-                 q -type(Interger),column size of reshaped matrix
+                 g -type(Interger),row size of reshaped matrix
+                 h -type(Interger),column size of reshaped matrix
             
             Return
                  A pointer pointing to the reshaped array.
@@ -95,5 +95,5 @@
             Note:
                 * Rehape is possible only if the dimensions of the input matrix and reshape dimensions are compatible.
                   i.e - Consider dimesions of X to be m x n.Then if X needs to be reshaped to g x h,
-                        p x q = m x n MUST BE TRUE.
+                        g x h = m x n MUST BE TRUE.
             
