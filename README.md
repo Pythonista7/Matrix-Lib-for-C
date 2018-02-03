@@ -31,7 +31,8 @@
             Return
                   A pointer pointing to a 2D array containing the product of X and Y.  
             
-            Note:Dimensions of X and Y need to be compatible for multiplication.
+            Note:
+                 * Dimensions of X and Y need to be compatible for multiplication.
          
   
   4)div(X,Y)
@@ -80,4 +81,19 @@
      ***    Return
                   An Integer that is rank of the matrix X.
      ***
-  9)
+  
+  9)reshape(X,p,q)
+  
+            Input
+                 X -type(pointer to a 2D array)
+                 p -type(Interger),row size of reshaped matrix
+                 q -type(Interger),column size of reshaped matrix
+            
+            Return
+                 A pointer pointing to the reshaped array.
+                 
+            Note:
+                * Rehape is possible only if the dimensions of the input matrix and reshape dimensions are compatible.
+                  i.e - Consider dimesions of X to be m x n.Then if X needs to be reshaped to p x q,
+                        p x q = m x n MUST BE TRUE.
+            
