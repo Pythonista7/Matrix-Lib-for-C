@@ -45,4 +45,39 @@
             Return
                   A pointer pointing to a 2D array containing the divident of X and Y.
              
-            Note:Divion by 0 may throw errors.
+            Note: 
+                 * Works as X * Y^-1{i.e - prod(X,inverse(Y))  }
+                 * Divion by 0 may throw errors.
+ 
+ 
+  5)inverse(X)
+  
+              Input
+                    X -type(pointer to 2D array)
+                    
+              Return
+                    A pointer pointing to a 2D array containing inverse of X.
+                    
+  6)transpose(X)
+  
+                Input
+                     X -type(pointer to 2D array)
+                Return
+                     A pointer pointing to a 2D array that is the transpose of array X.
+                     
+  7)adjoint(X)
+              
+              Input
+                    X -type(pointer to 2D array)
+              Return
+                    A pointer pointing to a 2D array containing the adjoint of X.
+              
+  8)rank(X)
+            
+            Input
+                  X -type(pointer to 2D array)
+            
+     ***    Return
+                  An Integer that is rank of the matrix X.
+     ***
+  9)
