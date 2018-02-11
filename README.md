@@ -4,7 +4,7 @@
   All functions will accept pointers as input and return pointer/value depending on function.
   The following are the propossed functions for this project,
   
- 1)sum(X,Y)
+ 1)sum(X,Y) //Currently under the name of MsumV1.c
  
             Input
                   X -type(pointer to 2D array)
