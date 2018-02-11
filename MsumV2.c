@@ -4,7 +4,7 @@
 
 Ver 2.0 has the following updates
   > Now the user is forced to input compatible dimensions and code will not break.
-  > The above feature is implimented in the function get_inout()
+  > The above feature is implimented in the function get_input()
   > Un-necessary and not so useful variables and pointers were removed and that data is now handled globally.
   > Hence get_input is now 'void' and will not return any pointers as in ver 1.
 
