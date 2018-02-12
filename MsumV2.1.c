@@ -9,7 +9,8 @@ Ver 2.0 has the following updates
   > Hence get_input is now 'void' and will not return any pointers as in ver 1.
 Ver 2.1 update:
   > Program now contains dedicate function to display contents of resultant matrix A[][]
-  
+  > Matrix Subraction function implimented.
+  > Menu system (Ver1) introduced.
 Note to dev
   > It is advised to use the Framework of matrix structure for any and all matrices involed in the program.
   > Do not forget to prototype your functions before defining them.
@@ -27,6 +28,7 @@ Expected path ahead
 
 
 #include<stdio.h>
+#include<ctype.h>
 
 //Frame work for matrices
 typedef struct matrix
@@ -71,10 +73,6 @@ void get_input()
       m=dim[0];n=dim[1];
       p=dim[2];q=dim[3];
 
-
-
-
-
       //Matrix compatibility check
       if( (m != p) || (n != q) )
       {
@@ -116,7 +114,6 @@ void get_input()
     X.colm_size=n;
 
 
-
     //Input matrix B
 
     printf("Enter Elements of matrix B:\n");
@@ -149,6 +146,52 @@ void get_input()
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////  DISPLAY THE RESULTANT ARRAY //////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void show_output(float *a)
+{
+
+    int ctr=0;//to control printing of resultant array
+
+    printf("\n\n\n\n\n\n\n");
+    //printf("rowsize= %f and colum=%f\n",dim[0],dim[1]);
+    for(int i=0;i<dim[0];i++)
+    {   //printf("Value of i is %d\n",i);
+        for(int j=0;j<dim[1];j++)
+          {
+            printf("%f \t",*(a+ctr));
+            //printf("Value of j is %d\n",j);
+            ctr++;
+          }
+          ctr+=(50-ctr);//To shift to next row
+          printf("\n");
+    }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////  THE MENU  //////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int menu()
+{ int choice;
+  printf("\n\n\n\n\n\n\n\n\n\nWelcome to matrix operations!\n");
+  printf("Enter choice number:\n");
+  printf("0.Exit\n");
+  printf("1.Matrix Addition\n");
+  printf("2.Matrix Subraction\n");
+
+  scanf("%d",&choice);
+  return(choice);
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////  MATRIX ADDITION  //////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 float* m_sum(struct matrix M1,struct matrix M2)
 {
   int i,j;
@@ -175,49 +218,71 @@ float* m_sum(struct matrix M1,struct matrix M2)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////  DISPLAY THE RESULTANT ARRAY //////////////////////////////////////////////////////////////////////
+///////////////////////  MATRIX SUBRACTION  ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void show_output(float *a)
+
+float* m_diff(struct matrix M1,struct matrix M2)
 {
+  int i,j;
+  //int A[50][50];
 
-    int ctr=0;//to control printing of resultant array
 
-    printf("The result is :\n");
-    //printf("rowsize= %f and colum=%f\n",dim[0],dim[1]);
-    for(int i=0;i<dim[0];i++)
-    {   //printf("Value of i is %d\n",i);
-        for(int j=0;j<dim[1];j++)
-          {
-            printf("%f \t",*(a+ctr));
-            //printf("Value of j is %d\n",j);
-            ctr++;
-          }
-          ctr+=(50-ctr);//To shift to next row
-          printf("\n");
+    //Subraction
+    for (i=0;i<M1.row_size;i++)
+    {
+
+      for(j=0;j<M1.colm_size;j++)
+      {
+        A[i][j]=M1.arr[i][j] - M2.arr[i][j];
+      }
+
     }
+
+    ans_ptr=&A[0][0];//creating to pointer to pass array reference
+
+
+    return(ans_ptr);
+
 
 }
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////  THE MAIN  //////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void main()
 {
 
   float *a;//Will contain pointer pointing to the resultant matrix
-
-  get_input();//will input all data into global struct A and B
+  int choice;
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////START OF MENU OPTION EXECUTION//////////////////////////////////////////////////////////////////////
+  ////////////////////////////////START OF MENU OPTION EXECUTION//////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  do
+  {
+    choice=menu();//variable recieves option number selected by the user
 
+    switch(choice)
+        {
+          case 0:choice=0;
+                 printf("\n\n\nTHANK YOU\n\n");
+                 break;
 
-  a=m_sum(X,Y);//struct matrix X,struct matrix Y
+          case 1:get_input();//will input all data into global struct A and B
+                 a=m_sum(X,Y);//ADDITION of struct matrix X,struct matrix Y
+                 show_output(a);//will print the result in matrix A[][]
+                 break;
 
+          case 2:get_input();//will input all data into global struct A and B
+                 a=m_diff(X,Y);//Subraction of struct matrix X,struct matrix Y
+                 show_output(a);//will print the result in matrix A[][]
+                 break;
 
+          }
 
-  show_output(a);//will print the result in matrix A[][]
+    }while(choice!=0);
 
 
 
