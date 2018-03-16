@@ -79,7 +79,7 @@
                   X -type(pointer to 2D array)
             
      ***    Return
-                  An Integer that is rank of the matrix X.
+                  An float that is rank of the matrix X.
      ***
   
   9)reshape(X,g,h)
@@ -97,3 +97,10 @@
                   i.e - Consider dimesions of X to be m x n.Then if X needs to be reshaped to g x h,
                         g x h = m x n MUST BE TRUE.
             
+ 10)det(X)
+ 
+          Input
+              X - Matrix for which determinent is requried
+          
+          Return
+              An float which contains the determinent of the input matrix.    
