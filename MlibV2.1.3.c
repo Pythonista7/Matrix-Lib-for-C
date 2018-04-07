@@ -398,7 +398,9 @@ float* m_inverse(struct matrix M1)
 float* m_transpose(struct matrix M1)
 {
   //compatibility=0     refer initial doc comment for details.
-
+  Y.row_size=dim[1];
+  Y.colm_size=dim[0];
+  return m_reshape(M1,Y);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////// RESHAPING A MATRIX  /////////////////////////////////////////////////////////////////
@@ -425,7 +427,7 @@ float* m_reshape(struct matrix M1,struct matrix M2)
   {
     for(j=0;j<n;j++)
     { queue[ctr]=M1.arr[i][j];
-      printf("Qele=%f, i=%d, j=%d\n",M1.arr[i][j],i,j );
+    //  printf("Qele=%f, i=%d, j=%d\n",M1.arr[i][j],i,j );
       ctr++;
     }
   }
@@ -436,7 +438,7 @@ float* m_reshape(struct matrix M1,struct matrix M2)
   {
     for(j=0;j<n;j++)
     {
-      printf("Q element %d after entry:%f\n",ctr,queue[ctr]);
+      //printf("Q element %d after entry:%f\n",ctr,queue[ctr]);
       ctr++;
     }
   }
@@ -461,22 +463,7 @@ float* m_reshape(struct matrix M1,struct matrix M2)
       ctr++;
     }
   }
-/*
-  for(i=0;i<p;i++)
-  {
-    A[i][j]=0;
 
-    float *m1;//to extract data from M1.array
-    m1=&(M1.arr[0][0]);
-
-    for(j=0;j<q;j++)
-    {
-      A[i][j]= *(m1+(sizeof(float) * ctr ));
-      printf("\n%f\n",&A[i][j]);
-      ctr++;
-    }
-  }
-*/
   ans_ptr=A;
 
   return ans_ptr;
@@ -618,12 +605,13 @@ void main()
                  */
                  break;
 
-         case 6:/*
-                compatibility=refer header comments;
+         case 6:
+                compatibility=0;
                 get_input(compatibility);
-                a=m_funtion(input parameters);
+                compatibility=3;
+                a=m_transpose(X);
                 show_output(a);
-                */
+
                 break;
 
         case 7:/*
