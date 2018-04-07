@@ -16,9 +16,14 @@ Ver 2.1.1 patch:
   > All fuctions have been prototyped.(Refer readme file for details)
   > Framed switch case,please insert all the working functions into the switch-case.
 
+Ver 2.1.3 update:
+  > Reshape of matrix and transpose of matrix completed.
+  > Output function debugged and modified ,all previous output issues resolved.
+  > variable 'ctr' now made local variable due to conflicting useage during reshape and transpose implimentations.
 Issue's:
 > need to fix m_det/COFACTOR
->need to debug reshape
+
+* <UPDATE>need to debug reshape<UPDATE>Debug complete
 
 Note to dev
   > It is advised to use the Framework of matrix structure for any and all matrices involed in the program.
@@ -57,14 +62,15 @@ float A[50][50];  //Stores resultant matrix
 float ans;        //Store single value answers such as determinent and rank
 float *ans_ptr;   //points to array A[0][0]
 int compatibility;
-//int ctr;          //global counter
+
 /*
+
   Tells what type of compatibility is required for the selected operation.
   > compatibility=0 is to input matrix for single matrix operations such as inverse , adjoint , reshape , transpose etc.
   > compatibility=1 is to check if both input matrices are of equal dimensions.Its used in m_sum() and m_diff()
-  > compatibility=2 is for check if both the input matrices are suitable for muliplication.
-    That is if X= m x n and Y= p x q , n == p for multiplication.
-  >compatibility=3 is to check for reshape condition
+  > compatibility=2 is for check if both the input matrices are suitable for muliplication.That is if X= m x n and Y= p x q , n == p for multiplication.
+  > compatibility=3 is to check for reshape condition
+
 */
 
 
@@ -73,11 +79,11 @@ float* m_sum(struct matrix,struct matrix);      // completed
 float* m_diff(struct matrix,struct matrix);     // completed
 float* m_prod(struct matrix,struct matrix);     // completed
 float* m_inverse(struct matrix);                // W.I.P
-float* m_transpose(struct matrix);              // W.I.P
-float* m_div(struct matrix,struct matrix);      // feature unavaible
-float* m_adj(struct matrix);                    // feature unavaible
+float* m_transpose(struct matrix);              // completed
+float* m_div(struct matrix,struct matrix);      // featture unavaible
+float* m_adj(struct matrix);                    // W.I.P
 float* m_rank(struct matrix);                   // feature unavaible
-float* m_reshape(struct matrix,struct matrix);  // W.I.P
+float* m_reshape(struct matrix,struct matrix);  // completed
 float  m_det(float M1[50][50],int n);           // Need to fix,but doesn't break code
 
 void get_input();
@@ -96,16 +102,8 @@ void get_input(int compatibility)
 
     do  //Force iterate until proper input
     {
-      /*Inputting Dimensions
-      printf("Enter the number of rows and colmns in A : ");
-      scanf("%f %f",&dim[0],&dim[1]);
-      printf("Enter the number of rows and colmns in B : ");
-      scanf("%f %f",&dim[2],&dim[3]);
-
-      //Local use of dimensions is done using m,n,p,q while the dim array is passed for future reference
-      m=dim[0];n=dim[1];
-      p=dim[2];q=dim[3];
-      */
+      //Inputting Dimensions
+     
       //Matrix compatibility check
       if(compatibility==0)
       { printf("Enter the number of rows and colmns in A : ");
@@ -605,16 +603,24 @@ void main()
                  */
                  break;
 
-         case 6:
-                compatibility=0;
-                get_input(compatibility);
-                compatibility=3;
-                a=m_transpose(X);
-                show_output(a);
+          case 6:
+                 compatibility=0;
+                 get_input(compatibility);
+                 compatibility=3;
+                 a=m_transpose(X);
+                 show_output(a);
 
+                 break;
+
+         case 7:/*
+                compatibility=refer header comments;
+                get_input(compatibility);
+                a=m_funtion(input parameters);
+                show_output(a);
+                */
                 break;
 
-        case 7:/*
+        case 8:/*
                compatibility=refer header comments;
                get_input(compatibility);
                a=m_funtion(input parameters);
@@ -622,21 +628,13 @@ void main()
                */
                break;
 
-       case 8:/*
-              compatibility=refer header comments;
+       case 9:
+              compatibility=3;
               get_input(compatibility);
-              a=m_funtion(input parameters);
+              a=m_reshape(X,Y);
               show_output(a);
-              */
+
               break;
-
-      case 9:
-             compatibility=3;
-             get_input(compatibility);
-             a=m_reshape(X,Y);
-             show_output(a);
-
-             break;
 
 	case 10:
 		      compatibility=0;
